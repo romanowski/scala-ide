@@ -9,6 +9,7 @@ import com.sun.jdi.ThreadReference
 import com.sun.jdi.Value
 import com.sun.jdi.VMCannotBeModifiedException
 import com.sun.jdi.VMDisconnectedException
+import com.sun.jdi.ObjectCollectedException
 import org.eclipse.debug.core.DebugEvent
 import org.eclipse.debug.core.model.IThread
 import org.eclipse.debug.core.model.IBreakpoint
@@ -21,6 +22,7 @@ import org.scalaide.debug.internal.command.ScalaStep
 import org.scalaide.debug.internal.command.ScalaStepInto
 import org.scalaide.debug.internal.command.ScalaStepReturn
 import org.scalaide.logging.HasLogger
+import scala.tools.eclipse.debug.async.StepMessageOut
 import scala.actors.Future
 import scala.collection.JavaConverters.asScalaBufferConverter
 
@@ -59,6 +61,10 @@ abstract class ScalaThread private (target: ScalaDebugTarget, private[model] val
     wrapJDIException("Exception while performing `step return`") { ScalaStepReturn(stackFrames.head).step() }
   }
 
+  def stepMessageOut(): Unit = {
+    (new StepMessageOut(getDebugTarget, this)).step
+  }
+  
   // Members declared in org.eclipse.debug.core.model.ISuspendResume
 
   override def canResume: Boolean = suspended // TODO: need real logic

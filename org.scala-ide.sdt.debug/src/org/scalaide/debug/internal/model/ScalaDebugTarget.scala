@@ -372,6 +372,9 @@ abstract class ScalaDebugTarget private (val virtualMachine: VirtualMachine, lau
    * Return the current list of threads
    */
   private[model] def getScalaThreads: List[ScalaThread] = threads
+  
+  def getScalaThread(threadRef: ThreadReference) =
+    threads.find(_.threadRef == threadRef)
 
   private[model] def canPopFrames: Boolean = running && virtualMachine.canPopFrames()
 
