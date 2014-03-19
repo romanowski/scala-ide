@@ -53,12 +53,20 @@ abstract class ScalaThread private (target: ScalaDebugTarget, private[model] val
   override def canStepReturn: Boolean = suspended // TODO: need real logic
   override def isStepping: Boolean = ???
 
-  override def stepInto(): Unit = stepIntoFrame(stackFrames.head)
+  override def stepInto(): Unit = {
+    for (head <- stackFrames.headOption) {
+      wrapJDIException("Exception while performing `step into`") { ScalaStepInto(head).step() }
+    }
+  }
   override def stepOver(): Unit = {
-    wrapJDIException("Exception while performing `step over`") { ScalaStepOver(stackFrames.head).step() }
+    for (head <- stackFrames.headOption) {
+      wrapJDIException("Exception while performing `step over`") { ScalaStepOver(head).step() }
+    }
   }
   override def stepReturn(): Unit = {
-    wrapJDIException("Exception while performing `step return`") { ScalaStepReturn(stackFrames.head).step() }
+    for (head <- stackFrames.headOption) {
+      wrapJDIException("Exception while performing `step return`") { ScalaStepReturn(head).step() }
+    }
   }
 
   def stepMessageOut(): Unit = {
