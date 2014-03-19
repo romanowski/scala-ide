@@ -52,6 +52,7 @@ object ScalaDebugTarget extends HasLogger {
         logger.warn("Unable to recognize source locator %s, cannot add Scala participant".format(sourceLocator))
     }
 
+
     debugTarget.startJdiEventDispatcher()
 
     debugTarget.fireCreationEvent()
