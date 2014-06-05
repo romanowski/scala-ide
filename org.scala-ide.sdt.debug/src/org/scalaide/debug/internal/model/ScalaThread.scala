@@ -9,6 +9,7 @@ import com.sun.jdi.ThreadReference
 import com.sun.jdi.Value
 import com.sun.jdi.VMCannotBeModifiedException
 import com.sun.jdi.VMDisconnectedException
+import com.sun.jdi.ObjectCollectedException
 import org.eclipse.debug.core.DebugEvent
 import org.eclipse.debug.core.model.IThread
 import org.eclipse.debug.core.model.IBreakpoint
