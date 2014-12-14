@@ -1,8 +1,6 @@
 package org.scalaide.debug.internal.async
 
 import org.scalaide.debug.internal.BaseDebuggerActor
-import org.scalaide.core.ScalaPlugin
-import org.scalaide.util.internal.eclipse.SWTUtils._
 import org.eclipse.jface.util.PropertyChangeEvent
 import com.sun.jdi.request.EventRequest
 import com.sun.jdi.event.BreakpointEvent
@@ -10,6 +8,9 @@ import org.eclipse.debug.core.DebugEvent
 import org.scalaide.logging.HasLogger
 import org.scalaide.debug.internal.model.ScalaDebugTarget
 import org.scalaide.debug.internal.PoisonPill
+import org.scalaide.core.internal.ScalaPlugin
+import org.scalaide.util.eclipse.SWTUtils._
+
 
 class BreakOnDeadLetters(debugTarget: ScalaDebugTarget) extends HasLogger {
   import BreakOnDeadLetters._
@@ -35,8 +36,8 @@ class BreakOnDeadLetters(debugTarget: ScalaDebugTarget) extends HasLogger {
     override def behavior = {
 
       case Initialize =>
-        ScalaPlugin.prefStore.addPropertyChangeListener(propListener _)
-        val enabled = ScalaPlugin.prefStore.getBoolean(preferenceID)
+        ScalaPlugin().getPreferenceStore().addPropertyChangeListener(propListener _)
+        val enabled = ScalaPlugin().getPreferenceStore().getBoolean(preferenceID)
         if (enabled)
           createRequests()
 
@@ -67,7 +68,7 @@ class BreakOnDeadLetters(debugTarget: ScalaDebugTarget) extends HasLogger {
     }
 
     private def disable() {
-      ScalaPlugin.prefStore.removePropertyChangeListener(propListener _)
+      ScalaPlugin().getPreferenceStore().removePropertyChangeListener(propListener _)
       val eventDispatcher = debugTarget.eventDispatcher
       val eventRequestManager = debugTarget.virtualMachine.eventRequestManager
 

@@ -7,8 +7,8 @@ import org.eclipse.core.runtime.CoreException
 import org.eclipse.core.runtime.Status
 import org.eclipse.core.runtime.IStatus
 import org.eclipse.jface.resource.ImageRegistry
-import org.scalaide.ui.internal.ScalaImages
 import org.eclipse.ui.PlatformUI
+import org.scalaide.ui.ScalaImages
 
 object ScalaDebugPlugin {
   @volatile var plugin: ScalaDebugPlugin = _

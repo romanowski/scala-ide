@@ -24,6 +24,7 @@ import org.scalaide.debug.internal.command.ScalaStepReturn
 import org.scalaide.logging.HasLogger
 import scala.actors.Future
 import scala.collection.JavaConverters.asScalaBufferConverter
+import org.scalaide.debug.internal.async.StepMessageOut
 
 class ThreadNotSuspendedException extends Exception
 
@@ -58,6 +59,10 @@ abstract class ScalaThread private (target: ScalaDebugTarget, val threadRef: Thr
   }
   override def stepReturn(): Unit = {
     wrapJDIException("Exception while performing `step return`") { ScalaStepReturn(stackFrames.head).step() }
+  }
+
+  def stepMessageOut(): Unit = {
+    (new StepMessageOut(getDebugTarget, this)).step
   }
 
   // Members declared in org.eclipse.debug.core.model.ISuspendResume

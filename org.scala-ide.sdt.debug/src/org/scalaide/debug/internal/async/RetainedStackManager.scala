@@ -14,7 +14,6 @@ import com.sun.jdi.ReferenceType
 import com.sun.jdi.ThreadReference
 import org.scalaide.logging.HasLogger
 import org.scalaide.debug.internal.model.ScalaValue
-import org.scalaide.util.internal.Utils
 import com.sun.jdi.Method
 
 /** Install breakpoints in key places and collect stack frames.
