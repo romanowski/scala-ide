@@ -22,7 +22,7 @@ import org.scalaide.debug.internal.command.ScalaStep
 import org.scalaide.debug.internal.command.ScalaStepInto
 import org.scalaide.debug.internal.command.ScalaStepReturn
 import org.scalaide.logging.HasLogger
-import scala.tools.eclipse.debug.async.StepMessageOut
+import org.scalaide.debug.internal.async.StepMessageOut
 import scala.actors.Future
 import scala.collection.JavaConverters.asScalaBufferConverter
 

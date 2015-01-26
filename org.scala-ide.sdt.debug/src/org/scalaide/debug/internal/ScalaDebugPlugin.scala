@@ -7,7 +7,7 @@ import org.eclipse.core.runtime.CoreException
 import org.eclipse.core.runtime.Status
 import org.eclipse.core.runtime.IStatus
 import org.eclipse.jface.resource.ImageRegistry
-import org.scalaide.ui.internal.ScalaImages
+import org.scalaide.ui.ScalaImages
 import org.eclipse.ui.PlatformUI
 
 object ScalaDebugPlugin {
@@ -45,7 +45,8 @@ class ScalaDebugPlugin extends AbstractUIPlugin with IStartup {
   lazy val registry = {
     val reg = new ImageRegistry(PlatformUI.getWorkbench().getDisplay())
     def declareImage(key: String, path: String) {
-      ScalaImages.imageDescriptor(ScalaDebugPlugin.id, path) foreach (reg.put(key, _))
+      Option(AbstractUIPlugin.imageDescriptorFromPlugin(ScalaDebugPlugin.id, path))
+        .foreach(reg.put(key, _))
     }
     declareImage(ScalaDebugPlugin.IMG_ACTOR, "icons/actor-2.png")
 

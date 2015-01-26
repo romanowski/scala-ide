@@ -1,8 +1,8 @@
 package org.scalaide.debug.internal.async
 
 import org.scalaide.debug.internal.BaseDebuggerActor
-import org.scalaide.core.ScalaPlugin
-import org.scalaide.util.internal.eclipse.SWTUtils._
+import org.scalaide.core.internal.ScalaPlugin
+import org.scalaide.util.eclipse.SWTUtils._
 import org.eclipse.jface.util.PropertyChangeEvent
 import com.sun.jdi.request.EventRequest
 import com.sun.jdi.event.BreakpointEvent

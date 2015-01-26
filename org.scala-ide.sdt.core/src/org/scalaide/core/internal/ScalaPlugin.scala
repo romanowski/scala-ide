@@ -78,6 +78,8 @@ object ScalaPlugin {
 
   def apply(): ScalaPlugin = plugin
 
+  def prefStore = plugin.getPreferenceStore
+
 }
 
 class ScalaPlugin extends IScalaPlugin with PluginLogConfigurator with IResourceChangeListener with IElementChangedListener with HasLogger {
