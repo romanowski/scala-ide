@@ -54,9 +54,8 @@ class BaseConditionalBreakpointTest(val companion: BaseConditionalBreakpointTest
   }
 }
 
-class BaseConditionalBreakpointTestCompanion(workspace: String = "conditional-breakpoints",
-  fileName: String = "ConditionalBreakpoints",
-  lineNumber: Int = 9) extends CommonIntegrationTestCompanion(workspace) {
+class BaseConditionalBreakpointTestCompanion(fileName: String = "ConditionalBreakpoints",
+    lineNumber: Int = 9) extends CommonIntegrationTestCompanion("expression-evaluator") {
 
   /**
    * Breakpoints is hit when there's no condition or condition should evaluates to true
@@ -72,16 +71,17 @@ class BaseConditionalBreakpointTestCompanion(workspace: String = "conditional-br
     refreshBinaryFiles()
   }
 
-  private def doCreateEvaluatorWithBreakpoint(conditionContext: Option[ConditionContext]): Option[JdiExpressionEvaluator] = {
-    session = initDebugSession(fileName)
+  private def doCreateEvaluatorWithBreakpoint(conditionContext: Option[ConditionContext]): Option[JdiExpressionEvaluator] = withDebuggingSession(fileName) {
+    createdSession =>
+      session = createdSession
 
-    val objectName = "debug." + fileName + "$"
-    session.runToLine(objectName, lineNumber, conditionContext = conditionContext)
+      val objectName = "debug." + fileName + "$"
+      session.runToLine(objectName, lineNumber, conditionContext = conditionContext)
 
-    if (shouldHitBreakpoint(conditionContext)) {
-      Some(initializeEvaluator(session))
-    } else {
-      None
-    }
+      if (shouldHitBreakpoint(conditionContext)) {
+        Some(initializeEvaluator(session))
+      } else {
+        None
+      }
   }
 }

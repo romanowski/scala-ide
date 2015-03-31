@@ -1,7 +1,8 @@
 /*
  * Copyright (c) 2014 Contributor. All rights reserved.
  */
-package org.scalaide.debug.internal.expression.features
+package org.scalaide.debug.internal.expression
+package features
 
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
@@ -56,3 +57,5 @@ import org.junit.runners.Suite
     classOf[SuperTest],
     classOf[ToolBoxBugsTest]))
 class FeaturesTestSuite
+
+object FeaturesTestSuite extends CachedEclipseProjectContext

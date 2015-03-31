@@ -53,10 +53,10 @@ class IsInstanceOfTest extends BaseIntegrationTest(IsInstanceOfTest) {
   @Ignore("TODO - add support for variance")
   @Test
   def arrayVariance(): Unit = {
-    eval("fooArray.isInstanceOf[Array[Foo]]", fooArray.isInstanceOf[Array[Foo]], Java.primitives.boolean)
-    eval("barArray.isInstanceOf[Array[Foo]]", barArray.isInstanceOf[Array[Foo]], Java.primitives.boolean)
-    eval("fooArray.isInstanceOf[Array[Bar]]", fooArray.isInstanceOf[Array[Bar]], Java.primitives.boolean)
-    eval("barArray.isInstanceOf[Array[Bar]]", barArray.isInstanceOf[Array[Bar]], Java.primitives.boolean)
+    eval("fooArray.isInstanceOf[Array[Foo]]", fooArray.isInstanceOf[Array[FooInstance]], Java.primitives.boolean)
+    eval("barArray.isInstanceOf[Array[Foo]]", barArray.isInstanceOf[Array[FooInstance]], Java.primitives.boolean)
+    eval("fooArray.isInstanceOf[Array[Bar]]", fooArray.isInstanceOf[Array[BarInstance]], Java.primitives.boolean)
+    eval("barArray.isInstanceOf[Array[Bar]]", barArray.isInstanceOf[Array[BarInstance]], Java.primitives.boolean)
   }
 
   @Test

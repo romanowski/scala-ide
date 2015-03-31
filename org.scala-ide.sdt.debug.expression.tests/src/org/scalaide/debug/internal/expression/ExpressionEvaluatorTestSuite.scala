@@ -21,3 +21,5 @@ import org.scalaide.debug.internal.expression.proxies.phases.PhasesTestSuite
   classOf[SimpleContentProposalProviderIntegrationTest]
 ))
 class ExpressionEvaluatorTestSuite
+
+object ExpressionEvaluatorTestSuite extends CachedEclipseProjectContext
