@@ -1,0 +1,3 @@
+[submodule "org.scala-ide.sdt.debug.tests/test-workspace/mgr-benchmarks"]
+	path = org.scala-ide.sdt.debug.tests/test-workspace/mgr-benchmarks
+	url = git@github.com:romanowski/mgr-benchmarks.git
